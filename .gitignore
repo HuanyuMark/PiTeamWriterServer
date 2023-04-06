@@ -38,3 +38,5 @@ FileServer/*.local
 *.sw?
 
 */deprecated
+
+*/exeDist

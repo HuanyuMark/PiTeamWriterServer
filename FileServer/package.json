@@ -2,18 +2,26 @@
   "name": "pi-team-writer-fileserver",
   "version": "1.0.0",
   "description": "give static file about piTeamWriter",
-  "main": "main.ts",
   "scripts": {
-    "dev": "nodemon main.ts"
+    "dev": "nodemon main.ts",
+    "build": "babel main.ts --out-file target.js",
+    "exe-pre": "build && electron .",
+    "exe-build": "build && electron-packager . --out ./exeDist"
   },
-  "author": "",
+  "main": "./target.js",
+  "author": "Pacdel (HuanyuMark)",
   "license": "ISC",
   "dependencies": {
     "cookie-parser": "~1.4.4",
-    "dayjs": "^1.11.7"
+    "cors": "^2.8.5",
+    "dayjs": "^1.11.7",
+    "express": "^4.18.2"
   },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.3",
-    "@types/cors": "^2.8.13"
+    "@types/cors": "^2.8.13",
+    "electron": "^24.0.0",
+    "path-browserify": "^1.0.1",
+    "stream-http": "^3.2.0"
   }
 }

@@ -5,6 +5,7 @@ import http from 'http'
 import { logger } from './utils/httpRequestLogger';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
+// import { exit } from 'process';
 const app = express();
 
 app.use(cors());
@@ -15,7 +16,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 //@ts-ignore
 app.use(logger(process.env.LOGGER_OPEN || process.env.NODE_ENV));
-
+// exit
 //404page
 app.use(function (req, res, next: Function) {
     res.send('[PiTeamWriter-FileServer]: Not Found File');
