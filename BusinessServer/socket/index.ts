@@ -12,8 +12,7 @@ export const initSocker = (server: http.Server): Server => {
             origin: '*'
         }
     })
-
-    io.on('connection', connectionListener)
+        .on('connection', connectionListener)
 
     return io;
 }

@@ -1,3 +1,4 @@
+#! /usr/bin/env node
 "use strict";
 
 var _express = _interopRequireDefault(require("express"));
@@ -9,25 +10,19 @@ var _cors = _interopRequireDefault(require("cors"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 //@ts-ignore
 
-const app = (0, _express.default)();
-app.use((0, _cors.default)());
-app.use(_express.default.static(_path.default.join(__dirname, 'static')));
-app.use(_express.default.json());
-app.use(_express.default.urlencoded({
+const expressApp = (0, _express.default)();
+const port = normalizePort(process.env.PORT || '2999');
+expressApp.use((0, _cors.default)()).use(_express.default.static(_path.default.join(__dirname, 'static'))).use(_express.default.json()).use(_express.default.urlencoded({
   extended: false
-}));
-app.use((0, _cookieParser.default)());
-app.use(_express.default.static(_path.default.join(__dirname, 'public')));
+})).use((0, _cookieParser.default)()).use(_express.default.static(_path.default.join(__dirname, 'public')))
 //@ts-ignore
-app.use((0, _httpRequestLogger.logger)(process.env.LOGGER_OPEN || process.env.NODE_ENV));
+.use((0, _httpRequestLogger.logger)(process.env.LOGGER_OPEN || process.env.NODE_ENV))
 
 //404page
-app.use(function (req, res, next) {
+.use(function (req, res, next) {
   res.send('[PiTeamWriter-FileServer]: Not Found File');
-});
-const port = normalizePort(process.env.PORT || '2999');
-app.set('port', port);
-const server = _http.default.createServer(app);
+}).set('port', port);
+const server = _http.default.createServer(expressApp);
 server.listen(port, () => {
   console.log(`[PiTeamWriter-FileServer] running at: http://127.0.0.1:${port}`);
 });

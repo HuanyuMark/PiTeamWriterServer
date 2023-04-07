@@ -6,8 +6,10 @@
   "scripts": {
     "dev": "nodemon ./main.ts",
     "build": "babel main.ts --out-file target.js",
-    "exe-pre": "build && electron .",
-    "exe-build": "build && electron-packager . --out ./exeDist"
+    "build:pre": "npm run build && electron .",
+    "build:win.exe": "npm run build && electron-packager .  --out ./exeDist/win --overwrite --config.productName=FileServer",
+    "build:linus.exe": "npm run build && electron-packager . --platform=linux --out ./exeDist/linus --overwrite --config.productName=FileServer",
+    "find-port": "netstat -ano | findstr \"2999\""
   },
   "author": "Pacdel (HuanyuMark)",
   "license": "ISC",

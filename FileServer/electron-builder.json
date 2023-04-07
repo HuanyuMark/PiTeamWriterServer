@@ -1,0 +1,17 @@
+{
+    "overwrite": true,
+    "platform": "linux",
+    "linux": {
+        "target": [
+            {
+                "arch": [
+                    "arm64"
+                ]
+            }
+        ]
+    },
+    "directories": {
+        "output": "./exeDist"
+    },
+    "productName": "PiTeamWriterFileServer"
+}

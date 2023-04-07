@@ -6,21 +6,21 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import { initSocker } from './socket';
 const app = express();
-
-app.use(cors());
-app.use(express.static(path.join(__dirname, 'static')));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-
-//404page
-app.use(function (req, res, next: Function) {
-    res.send('[PiTeamWriter-BusinessServer]: 404');
-});
-
 const port = normalizePort(process.env.PORT || '3000');
-app.set('port', port);
+
+app.use(cors())
+    .use(express.static(path.join(__dirname, 'static')))
+    .use(express.json())
+    .use(express.urlencoded({ extended: false }))
+    .use(cookieParser())
+    .use(express.static(path.join(__dirname, 'public')))
+
+    //404page
+    .use(function (req, res, next: Function) {
+        res.send('[PiTeamWriter-BusinessServer]: 404')
+    })
+
+    .set('port', port);
 
 export const server = http.createServer(app);
 

@@ -5,8 +5,13 @@
   "scripts": {
     "dev": "nodemon main.ts",
     "build": "babel main.ts --out-file target.js",
-    "exe-pre": "build && electron .",
-    "exe-build": "build && electron-packager . --out ./exeDist"
+    "build:pre": "npm run build && electron .",
+    "build:win.exe": "npm run build && electron-packager .  --out ./exeDist/win --overwrite",
+    "build:linus.exe": "npm run build && electron-packager . --productName=PiTeamWriterFileServer --out=/exeDist/linux  --platform=linux --arch=arm64 -no-sandbox",
+    "find-port": "netstat -ano | findstr \"2999\""
+  },
+  "bin": {
+    "server": "./target.js"
   },
   "main": "./target.js",
   "author": "Pacdel (HuanyuMark)",
@@ -23,5 +28,21 @@
     "electron": "^24.0.0",
     "path-browserify": "^1.0.1",
     "stream-http": "^3.2.0"
+  },
+  "build": {
+    "overwrite": true,
+    "linux": {
+      "target": [
+        {
+          "arch": [
+            "arm64"
+          ]
+        }
+      ]
+    },
+    "directories": {
+      "output": "./exeDist"
+    },
+    "productName": "PiTeamWriterFileServer"
   }
 }
