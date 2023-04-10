@@ -34,7 +34,7 @@ CREATE TABLE `user_team` (
 CREATE TABLE `text_file` (
     `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
     `textname` VARCHAR(255) NOT NULL,
-    `content` LONGTEXT,
+    `content` TEXT,
     `team_id` INT UNSIGNED NOT NULL,
     `update_time` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`),
@@ -45,7 +45,7 @@ CREATE TABLE `msg_file` (
     `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
     `user_id` INT UNSIGNED NOT NULL,
     `text_id` INT UNSIGNED NOT NULL,
-    `content` LongText,
+    `content` TEXT,
     `start_row` INT DEFAULT 0,
     `end_row` INT DEFAULT 0,
     `position` JSON,

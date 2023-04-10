@@ -8,7 +8,8 @@ import { initSocker } from './socket';
 const app = express();
 const port = normalizePort(process.env.PORT || '3000');
 
-app.use(cors())
+app
+    .use(cors())
     .use(express.static(path.join(__dirname, 'static')))
     .use(express.json())
     .use(express.urlencoded({ extended: false }))
@@ -43,5 +44,5 @@ function normalizePort(val: string) {
         return port;
     }
 
-    return false;
+    throw new TypeError(`Invalid port: ${val}`);
 }

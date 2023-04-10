@@ -1,0 +1,12 @@
+{
+  "name": "pi-team-writer-server",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "devf": "cd ./FileServer && npm run dev",
+    "devb": "cd ./BusinessServer && npm run dev",
+    "dev": "npm run devf && cd ../ && npm run devb && cd ../"
+  },
+  "author": "pecdel ( HuanyuMark )",
+  "license": "ISC"
+}

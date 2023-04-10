@@ -1,18 +1,15 @@
 #! /usr/bin/env node
-import { app } from 'electron'
 import express from 'express';
 import path from 'path';
 import http from 'http';
-import fs from 'fs';
 //@ts-ignore
 import { logger } from './utils/httpRequestLogger';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
-const expressApp = express();
-
 const port = normalizePort(process.env.PORT || '2999');
 
-expressApp.use(cors())
+const expressApp = express()
+    .use(cors())
     .use(express.static(path.join(__dirname, 'static')))
     .use(express.json())
     .use(express.urlencoded({ extended: false }))
@@ -22,7 +19,7 @@ expressApp.use(cors())
     .use(logger(process.env.LOGGER_OPEN || process.env.NODE_ENV))
 
     //404page
-    .use(function (req, res, next: Function) {
+    .use((req, res, next: Function) => {
         res.send('[PiTeamWriter-FileServer]: Not Found File');
     })
 
@@ -47,5 +44,5 @@ function normalizePort(val: string) {
         return port;
     }
 
-    return false;
+    throw new TypeError(`Invalid port: ${val}`);
 }
